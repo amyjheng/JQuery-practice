@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>01formevent.html</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <style>
+        .btn{
+            top:0;
+            transition: .5s;
+        }
+       
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form id="myform" action="http://192.168.32.130/get.aspx"  >            
+            <div class="py-2">
+                <input type="text" id="idInp" name="txtName" class="form-control">
+                <span id="idsp"></span>
+            </div>
+            <div class="py-2">
+                <select class="form-control" name="" id="idSel" multiple>
+                    <option value="1">台北市</option>
+                    <option value="2">新竹市</option>
+                    <option value="3">台中市</option>
+                </select>
+            </div>
+            <div class="">
+                <a class="btn btn-info position-relative">click</a>
+                <input type="submit" class="btn btn-info position-relative" value="submit">
+            </div>
+            <div id="demo"></div>
+        </form>
+    </div>
+
+    <script src="../js/jquery-3.5.1.min.js"></script>
+    <script>
+        $(function(){
+            //8-1
+            $(".btn").click(function(){
+                console.log("submit");                                               
+                $("form").submit();
+
+                //console.log($("option:selected"));
+                //let options = $("option:selected");
+
+                //options.each(function () {
+                //    //console.log($(this).val());
+                //    //console.log($(this).text());
+                //    let str = ""
+                //    str +=$(this).val() + " : " + $(this).text() + "<br>";
+                //    console.log(str)
+                //    $("#demo").append (str)
+                //})
+            });
+
+            $("#myform").submit(function(event){
+                console.log("submit!"); 
+                // console.log(event.type);
+                          
+            });
+
+            //8-2
+            $("#idInp").focus(function(){
+                console.log("focus"); 
+                $(this).css("background-color", "yellow");
+             
+            }).blur(function(){
+                console.log("blur");
+                $(this).css("background-color", "blue");
+            })
+
+            //8-3
+            $("#idSel").change(function(){
+                console.log("change");
+                //讀取option的值
+                let svalue = $(this).val();
+                console.log(svalue);
+                let sText = $("option:selected").text();
+                console.log(sText);
+                $("#demo").text(svalue + ":" + sText);               
+
+            });
+            
+           
+
+        })
+    </script>
+</body>
+</html>
